@@ -2,10 +2,11 @@ import React from "react";
 import ResultItem from "./ResultsItem";
 
 
-const ResultsBox = ({ history }) => {
+const ResultsBox = ({ history, isStreaming, query, lastAnswer }) => {
     return (
         <div>
             {history.map((item, idx) => (
+                
                 <ResultItem 
                     question={item.question} 
                     answer={item.answer}
@@ -25,6 +26,15 @@ const ResultsBox = ({ history }) => {
                     } 
                 />
             ))}
+        {isStreaming && (
+            <ResultItem
+                question={query}
+                answer={lastAnswer}
+                references={[
+                { domain: "arxiv.org", url: "https://arxiv.org", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/ArXiv_logo.svg/512px-ArXiv_logo.svg.png" }
+                ]}
+            />
+            )}
         </div>
     )
 }
